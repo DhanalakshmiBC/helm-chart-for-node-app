@@ -34,7 +34,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: 155999377092.dkr.ecr.eu-north-1.amazonaws.com/docker-images-for-nodejs:7d8e26592b58ee7d302b72c0fd2033eabf2762f1
+          image: {{ .Values.image.repository}}:{{ .Values.image.tag}}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
