@@ -2,8 +2,14 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: myapp-ingress
+  annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: nginx
+   tls:
+  - hosts:
+      - nodeapp.68.233.108.177.nip.io
+    secretName: efk-tls
   rules:
   - http:
       paths:
