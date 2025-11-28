@@ -5,13 +5,12 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: "*" 
-    http:
+  - http:
       paths:
       - backend:
           service:
             name: {{ include "node-app-frontend.fullname" . }}
             port:
               number: 3000
-        path: /node.app
+        path: /nodeapp
         pathType: Prefix
