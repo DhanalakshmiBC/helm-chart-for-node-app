@@ -6,7 +6,7 @@ metadata:
       cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: nginx
-   tls:
+  tls:
   - hosts:
       - nodeapp.68.233.108.177.nip.io
     secretName: efk-tls
