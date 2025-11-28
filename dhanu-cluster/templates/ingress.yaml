@@ -11,12 +11,13 @@ spec:
       - nodeapp.68.233.108.177.nip.io
     secretName: efk-tls
   rules:
-  - http:
-      paths:
-      - backend:
+  - host: nodeapp.68.233.108.177.nip.io
+    http:
+       paths:
+       - backend:
           service:
             name: {{ include "node-app-frontend.fullname" . }}
             port:
               number: 3000
-        path: /nodeapp
-        pathType: Prefix
+         path: /
+         pathType: Prefix
