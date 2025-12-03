@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: node-app-frontend
+  namespace: monitoring
+  labels:
+    release: prometheus    # required if your Prometheus selects by release label
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: node-app-frontend   # MUST match your Service labels
+  namespaceSelector:
+    matchNames:
+      - frontend-app   # <-- replace with the namespace where your service runs
+  endpoints:
+    - port: http               # MUST match Service port name
+      interval: 30s
+      path: /metrics           # change if your app exposes metrics under another path
