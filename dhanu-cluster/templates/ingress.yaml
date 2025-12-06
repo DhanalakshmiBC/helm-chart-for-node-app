@@ -11,7 +11,7 @@ spec:
       - nodeapp.68.233.108.177.nip.io
     secretName: efk-tls
   rules:
-  - host: nodeapp.68.233.108.177.nip.io
+  - host: {{ .Values.ingress.hosts.host }}
     http:
        paths:
        - backend:

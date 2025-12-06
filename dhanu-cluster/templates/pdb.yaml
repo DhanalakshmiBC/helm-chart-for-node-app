@@ -1,0 +1,21 @@
+{{- if .Values.pdb.enabled }}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "simple-app.fullname" . }}-pdb
+  labels:
+    app: {{ include "simple-app.name" . }}
+    chart: {{ include "simple-app.chart" . }}
+    release: {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ include "simple-app.name" . }}
+      release: {{ .Release.Name }}
+  {{- if .Values.pdb.minAvailable }}
+  minAvailable: {{ .Values.pdb.minAvailable }}
+  {{- end }}
+  {{- if .Values.pdb.maxUnavailable }}
+  maxUnavailable: {{ .Values.pdb.maxUnavailable }}
+  {{- end }}
+{{- end }}
