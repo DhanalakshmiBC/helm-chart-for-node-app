@@ -11,13 +11,15 @@ spec:
       - nodeapp.68.233.108.177.nip.io
     secretName: efk-tls
   rules:
-  - host: {{ .Values.ingress.hosts.host }}
+{{- range .Values.ingress.hosts }}
+  - host: {{ .host }}
     http:
        paths:
        - backend:
           service:
-            name: {{ include "node-app-frontend.fullname" . }}
+            name: {{ include "node-app-frontend.fullname" $ }}
             port:
               number: 3000
          path: /
          pathType: Prefix
+{{- end }}

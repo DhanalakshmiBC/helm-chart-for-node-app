@@ -2,15 +2,15 @@
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
-  name: {{ include "simple-app.fullname" . }}-pdb
+  name: {{ include "node-app-frontend.fullname" . }}-pdb
   labels:
-    app: {{ include "simple-app.name" . }}
-    chart: {{ include "simple-app.chart" . }}
+    app: {{ include "node-app-frontend.fullname" . }}
+    chart: {{ include "node-app-frontend.fullname" . }}
     release: {{ .Release.Name }}
 spec:
   selector:
     matchLabels:
-      app: {{ include "simple-app.name" . }}
+      app: {{ include "node-app-frontend.fullname" . }}
       release: {{ .Release.Name }}
   {{- if .Values.pdb.minAvailable }}
   minAvailable: {{ .Values.pdb.minAvailable }}
